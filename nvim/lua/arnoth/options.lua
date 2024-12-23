@@ -1,3 +1,4 @@
+-- vim.notify("Loading nvim options")
 vim.opt.guifont = "JetBrainsMono Nerd Font:h12"
 
 vim.opt.nu = true
