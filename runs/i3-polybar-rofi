@@ -13,7 +13,7 @@ mkdir -p ~/.config/polybar
 mkdir -p ~/.config/nitrogen
 
 # Copy configuration files
-cp -r ./env/.config/i3/ $HOME/.config/i3/
-cp -r ./env/.config/rofi/ $HOME/.config/rofi/
-cp -r ./env/.config/polybar/ $HOME/.config/polybar/
-cp -r ./env/.config/nitrogen/ $HOME/.config/nitrogen/
+cp -r ./env/.config/i3/ $HOME/.config/
+cp -r ./env/.config/rofi/ $HOME/.config/
+cp -r ./env/.config/polybar/ $HOME/.config/
+cp -r ./env/.config/nitrogen/ $HOME/.config/
