@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Install fonts
+sudo apt install fonts-font-awesome -y
+sudo apt install fonts-roboto -y
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo apt install -y tldr fzf
+sudo apt install ttf-font-awesome ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols

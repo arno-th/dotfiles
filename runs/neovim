@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo apt -y install neovim
+# sudo apt -y install lua51 luarocks

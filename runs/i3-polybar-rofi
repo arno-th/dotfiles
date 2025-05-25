@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Install required packages
+sudo apt install i3-wm i3 -y
+sudo apt install rofi -y
+sudo apt install polybar -y
+sudo apt install nitrogen -y
+
+# Create configuration directories
+mkdir -p ~/.config/i3
+mkdir -p ~/.config/rofi
+mkdir -p ~/.config/polybar
+mkdir -p ~/.config/nitrogen
+
+# Copy configuration files
+cp -r ./env/.config/i3/ $HOME/.config/i3/
+cp -r ./env/.config/rofi/ $HOME/.config/rofi/
+cp -r ./env/.config/polybar/ $HOME/.config/polybar/
+cp -r ./env/.config/nitrogen/ $HOME/.config/nitrogen/
