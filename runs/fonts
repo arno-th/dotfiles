@@ -1,18 +1,33 @@
 #!/usr/bin/env bash
 
-mkdir -p ~/.local/share/fonts
+FONT_DIR="$HOME/.local/share/fonts"
+mkdir -p $FONT_DIR
 
-# Install fonts
-wget https://use.fontawesome.com/releases/v6.5.0/fontawesome-free-6.5.0-desktop.zip -P ~/Downloads/
-unzip ~/Downloads/fontawesome-free-6.5.0-desktop.zip -d ~/Downloads/
-pushd ~/Downloads/fontawesome-free-6.5.0-desktop/
-cp otfs/*.otf ~/.local/share/fonts/
-cp ttf/*.ttf ~/.local/share/fonts/
-popd
-
-
+# Install Roboto font
 sudo apt install fonts-roboto -y
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
+
+# Install Font Awesome
+pushd $HOME/Downloads/
+wget https://use.fontawesome.com/releases/v6.7.2/fontawesome-free-6.7.2-desktop.zip
+unzip fontawesome-free-6.7.2-desktop.zip
+# Move the Font Awesome files to the local fonts directory
+mv fontawesome-free-6.7.2-desktop/ $FONT_DIR/fontawesome
+rm fontawesome-free-6.7.2-desktop.zip
+
+# Install JetBrains Mono font
+REPO="ryanoasis/nerd-fonts"
+ASSET_NAME="JetBrainsMono.zip"
+# Get the latest release tag from GitHub API
+LATEST_TAG=$(curl -s "https://api.github.com/repos/$REPO/releases/latest" | grep -oP '"tag_name": "\K(.*)(?=")')
+# Construct the download URL
+DOWNLOAD_URL="https://github.com/$REPO/releases/download/$LATEST_TAG/$ASSET_NAME"
+# Download the asset
+echo "Downloading from: $DOWNLOAD_URL"
+curl -LO "$DOWNLOAD_URL"
+unzip $ASSET_NAME -d $FONT_DIR/JetBrainsMonoNerdFont
+rm $ASSET_NAME
+
+popd
 
 # Reload font cache
 fc-cache -fv
