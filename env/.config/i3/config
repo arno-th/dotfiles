@@ -1,22 +1,22 @@
 ###########################################################################
 #
-#  ___ _____                            __ _       
-# |_ _|___ /            ___ ___  _ __  / _(_) __ _ 
+#  ___ _____                            __ _
+# |_ _|___ /            ___ ___  _ __  / _(_) __ _
 #  | |  |_ \   _____   / __/ _ \| '_ \| |_| |/ _` |
 #  | | ___) | |_____| | (_| (_) | | | |  _| | (_| |
 # |___|____/           \___\___/|_| |_|_| |_|\__, |
-#                                             |___/ 
+#                                             |___/
 #
 ###########################################################################
-
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
-
 
 ##########################
 #
 #    Basic
 #
 ##########################
+# Set mod key (Mod1=<Alt>, Mod4=<Super>)
+set $mod Mod4
 
 ##########################
 #
@@ -43,38 +43,50 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 ##########################
 #
-#    Basic Key Binds
+# Custom command keybinds
 #
 ##########################
-# Set mod key (Mod1=<Alt>, Mod4=<Super>)
-set $mod Mod4
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
 # Launch rofi (app launcher)
-bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+bindcode $mod+40 exec "rofi -show-icons -modi drun,run -show drun"
+
+# Swap on which monitor a workspace is shown
+bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/workspace_go_next_monitor.sh
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+Shift+p exec --no-startup-id ~/.config/rofi/powermenu.sh
+
+##########################
+#
+#    Basic Key Binds
+#
+##########################
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+Shift+s split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+Shift+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -96,7 +108,6 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -104,14 +115,14 @@ floating_modifier $mod
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
 # tiling_drag modifier titlebar
 
 # resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
@@ -135,8 +146,6 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
-
-bindsym $mod+r mode "resize"
 
 ##########################
 #

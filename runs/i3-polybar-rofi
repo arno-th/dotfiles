@@ -4,7 +4,7 @@
 sudo apt install i3-wm i3 -y
 sudo apt install rofi -y
 sudo apt install polybar -y
-sudo apt install nitrogen -y
+sudo apt install nitrogen jq -y
 
 # Create configuration directories
 mkdir -p ~/.config/i3
