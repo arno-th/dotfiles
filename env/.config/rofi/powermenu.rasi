@@ -14,9 +14,11 @@ window {
 }
 
 listview {
-    lines: 5;
+    lines: 5;                     /* Number of visible lines */
     spacing: 10px;
-    fixed-height: true;
+    fixed-height: false;         /* Allow scrolling */
+    dynamic: true;
+    scrollbar: true;
 }
 
 element {
