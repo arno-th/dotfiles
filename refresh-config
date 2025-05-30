@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Define array of folders to copy
+folders=(
+    "i3"
+    "polybar"
+    "nitrogen"
+    "rofi"
+    "gtk-3.0"
+)
+
+# Define the source directory
+source_dir="$HOME/.config"
+
+# Define the destination directory (current)
+destination_dir="$(pwd)/env/.config"
+
+# Copy each folder from source to destination
+for folder in "${folders[@]}"; do
+    cp -r "$source_dir/$folder" "$destination_dir/"
+done
