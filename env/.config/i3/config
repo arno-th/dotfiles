@@ -249,4 +249,4 @@ focus_follows_mouse no
 client.focused          #8418cc #285577 #ffffff #8418cc   #8418cc
 client.focused_inactive #0ea2b0 #0ea2b0 #ffffff #0ea2b0   #0ea2b0
 
-# for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 2
