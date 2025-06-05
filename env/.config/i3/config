@@ -61,6 +61,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 bindsym $mod+Shift+p exec --no-startup-id ~/.config/rofi/powermenu.sh
 
+bindsym $mod+Shift+o exec --no-startup-id ~/.config/i3/cycle_primary_monitor.sh
+
 ##########################
 #
 #    Basic Key Binds
@@ -216,8 +218,14 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock --i3lock --nofork
+# screen before suspend.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- $HOME/.config/i3/i3lock.sh $HOME/Pictures/icy-planet-wallpaper.jpg
+# Lock after 5 minutes (300 seconds)
+exec --no-startup-id xset s 300 300
+
+# Enable DPMS and set suspend after 10 minutes
+exec --no-startup-id xset +dpms
+exec --no-startup-id xset dpms 0 0 600
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.

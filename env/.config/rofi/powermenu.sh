@@ -7,7 +7,7 @@ options=" Lock\n⏾ Suspend\n Reboot\n Shutdown\n Logout"
 chosen=$(echo -e "$options" | rofi -dmenu -i -p "Power" -theme ~/.config/rofi/powermenu.rasi)
 
 case "$chosen" in
-" Lock") i3lock -c 000000 ;;
+" Lock") "$HOME/.config/i3/i3lock.sh" $HOME/Pictures/icy-planet-wallpaper.jpg ;;
 "⏾ Suspend") systemctl suspend ;;
 " Reboot") systemctl reboot ;;
 " Shutdown") systemctl poweroff ;;

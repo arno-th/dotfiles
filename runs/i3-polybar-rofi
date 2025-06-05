@@ -6,6 +6,13 @@ sudo apt install rofi -y
 sudo apt install polybar -y
 sudo apt install nitrogen jq -y
 
+# i3-lock-color
+git clone https://github.com/Raymo111/i3lock-color.git
+pushd i3lock-color
+./install-i3lock-color.sh
+popd
+rm -rf i3lock-color
+
 # Create configuration directories
 mkdir -p ~/.config/i3
 mkdir -p ~/.config/rofi
