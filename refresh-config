@@ -6,6 +6,8 @@ folders=(
     "nitrogen"
     "rofi"
     "gtk-3.0"
+    "ghostty"
+    "scripts"
 )
 
 # Define the source directory
