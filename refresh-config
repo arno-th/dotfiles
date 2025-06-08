@@ -8,6 +8,7 @@ folders=(
     "gtk-3.0"
     "ghostty"
     "scripts"
+    "ohmyposh"
 )
 
 # Define the source directory
@@ -20,3 +21,7 @@ destination_dir="$(pwd)/env/.config"
 for folder in "${folders[@]}"; do
     cp -r "$source_dir/$folder" "$destination_dir/"
 done
+
+
+# Refresh zsh config
+cp "$HOME/.zshrc" "$(pwd)/env/.zshrc"

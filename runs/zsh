@@ -3,5 +3,15 @@
 sudo apt -y install zsh
 hash -r
 sudo chsh -s $(which zsh)
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# Install Oh My Posh
+curl -s https://ohmyposh.dev/install.sh | bash -s
 
+# Copy zsh configuration
+cp "$(pwd)/env/.zshrc" $HOME/.zshrc
+
+# Copy Oh My Posh configuration
+mkdir -p $HOME/.config/ohmyposh
+cp "$(pwd)/env/.config/ohmyposh/config.toml" $HOME/.config/ohmyposh/config.toml
+
+# Restart zsh
+source $HOME/.zshrc
