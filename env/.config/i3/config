@@ -60,6 +60,14 @@ bindsym $mod+Shift+p exec --no-startup-id ~/.config/rofi/powermenu.sh
 
 bindsym $mod+Shift+o exec --no-startup-id ~/.config/i3/cycle_primary_monitor.sh
 
+# Bind screenshot shortcuts
+# Screen
+bindsym Print exec gnome-screenshot
+# Ared
+bindsym Shift+Print exec gnome-screenshot -a
+# Window
+bindsym Ctrl+Print exec gnome-screenshot -w
+
 ##########################
 #
 #    Basic Key Binds
