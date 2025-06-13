@@ -1,3 +1,14 @@
 #!/usr/bin/env bash
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)"
+# Install Ghostty if not already installed
+if ! command -v ghostty &> /dev/null; then
+    echo "Ghostty not found, installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)"
+else
+    echo "Ghostty is already installed."
+fi
+
+# Copy Ghostty configuration
+mkdir -p $HOME/.config/ghostty
+cp "$(pwd)/env/.config/ghostty/config" $HOME/.config/ghostty/config
+echo "Ghostty configuration copied to $HOME/.config/ghostty/config"
