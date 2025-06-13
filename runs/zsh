@@ -3,8 +3,13 @@
 sudo apt -y install zsh
 hash -r
 sudo chsh -s $(which zsh)
-# Install Oh My Posh
-curl -s https://ohmyposh.dev/install.sh | bash -s
+# Install Oh My Posh if not already installed
+if ! command -v oh-my-posh &> /dev/null; then
+  echo "Oh My Posh not found, installing..."
+  curl -s https://ohmyposh.dev/install.sh | bash -s
+else
+  echo "Oh My Posh is already installed."
+fi
 
 # Copy zsh configuration
 cp "$(pwd)/env/.zshrc" $HOME/.zshrc

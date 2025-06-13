@@ -7,6 +7,14 @@ export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git z zsh-autosuggestions zsh-syntax-highlighting)
 
+# Set history options
+HISTSIZE=50000
+SAVEHIST=50000
+HISTFILE=$HOME/.zsh_history
+setopt HIST_IGNORE_DUPS       # Don't record duplicates
+setopt HIST_REDUCE_BLANKS     # Remove superfluous blanks
+setopt HIST_IGNORE_SPACE      # Ignore commands starting with a space
+
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -18,7 +26,6 @@ else
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
 
 # Aliases

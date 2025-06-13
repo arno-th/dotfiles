@@ -2,6 +2,12 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
 version = 3
 final_space = true
 
+[upgrade]
+notice = true
+interval = "168h"
+auto = false
+source = "cdn"
+
 [transient_prompt]
   template = '❯ '
   foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}magenta{{end}}']
