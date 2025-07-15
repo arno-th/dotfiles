@@ -51,19 +51,21 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym $mod+Return exec ghostty
 
 # Launch rofi (app launcher)
-bindcode $mod+40 exec "rofi -show-icons -modi drun,run -show drun"
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/scripts/rofi-wrapper.sh drun
+bindsym $mod+f exec --no-startup-id ~/.config/rofi/scripts/rofi-wrapper.sh games
+bindsym $mod+r exec --no-startup-id ~/.config/rofi/scripts/rofi-wrapper.sh scripts
+bindsym $mod+Shift+p exec --no-startup-id ~/.config/rofi/scripts/rofi-wrapper.sh power
 
 # Swap on which monitor a workspace is shown
 bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/workspace_go_next_monitor.sh
 
-bindsym $mod+Shift+p exec --no-startup-id ~/.config/rofi/powermenu.sh
-
+# Cycle which monitor is primary
 bindsym $mod+Shift+o exec --no-startup-id ~/.config/i3/cycle_primary_monitor.sh
 
 # Bind screenshot shortcuts
 # Screen
 bindsym Print exec gnome-screenshot
-# Ared
+# Area
 bindsym Shift+Print exec gnome-screenshot -a
 # Window
 bindsym Ctrl+Print exec gnome-screenshot -w
@@ -96,12 +98,12 @@ bindsym $mod+Shift+s split h
 bindsym $mod+Shift+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+z fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+n layout stacking
+bindsym $mod+b layout tabbed
+bindsym $mod+m layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -129,7 +131,7 @@ bindsym $mod+Shift+r restart
 # tiling_drag modifier titlebar
 
 # resize window (you can also use the mouse for that)
-bindsym $mod+r mode "resize"
+bindsym $mod+x mode "resize"
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
@@ -226,7 +228,7 @@ exec --no-startup-id dex --autostart --environment i3
 # screen before suspend.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $HOME/.config/i3/i3lock.sh $HOME/Pictures/icy-planet-wallpaper.jpg
 # Lock after 5 minutes (300 seconds)
-exec --no-startup-id xset s 300 300
+exec --no-startup-id xset s 900 900
 
 # Enable DPMS and set suspend after 10 minutes
 exec --no-startup-id xset +dpms
