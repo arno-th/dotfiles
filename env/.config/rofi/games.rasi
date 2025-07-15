@@ -1,0 +1,61 @@
+configuration {
+    show-icons:             true;
+    drun-display-format:    "{name} {icon}";
+    drun-match-fields:      "name,generic,categories";
+}
+
+@import "launcher"
+
+window {
+    height: 360;
+}
+
+listview {
+    padding: 12px;
+    dynamic: true;
+    columns: 6;
+}
+
+@media (min-width: 1920) {
+    listview {
+        columns:    9;
+    }
+    element-icon {
+        size:       128px;
+    }
+}
+
+@media (min-width: 2400) {
+    listview {
+        columns:    12;
+    }
+    element-icon {
+        size:       192px;
+    }
+}
+
+@media (min-width: 3440) {
+    listview {
+        columns:    16;
+    }
+    element-icon {
+        size:       220px;
+    }
+}
+
+element-icon {
+    padding:            0px;
+    horizontal-align:   0.5;
+    border:             4px 4px solid 4px 4px;
+    border-radius:      16;
+    size:               96px;  /* default fallback */
+}
+
+element-icon selected {
+    border-color: @primary;
+}
+
+element-text {
+    horizontal-align:   0.5;
+    width:              160px;
+}

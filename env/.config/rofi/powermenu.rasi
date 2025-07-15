@@ -1,3 +1,10 @@
+@import "colors"
+
+configuration {
+    kb-row-up:      "Up,Control+p,k";
+    kb-row-down:    "Down,Control+n,j";
+}
+
 * {
     font: "JetBrains Mono Nerd Font 12";
     background-color: #1e1e2e;
@@ -5,7 +12,7 @@
     border-radius: 8px;
     padding: 10px;
     text-color: #cdd6f4;
-    width: 400px;
+    width: 250px;
 }
 
 window {
@@ -13,12 +20,15 @@ window {
     anchor: center;
 }
 
+inputbar {
+    enabled: false;
+}
+
 listview {
     lines: 5;                     /* Number of visible lines */
     spacing: 10px;
     fixed-height: false;         /* Allow scrolling */
     dynamic: true;
-    scrollbar: true;
 }
 
 element {
@@ -28,6 +38,6 @@ element {
 }
 
 element selected {
-    background-color: #89b4fa;
+    background-color: @primary;
     text-color: #1e1e2e;
 }

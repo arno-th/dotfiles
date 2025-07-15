@@ -1,0 +1,28 @@
+@import "launcher"
+
+* {
+    font:               "JetBrainsMono Nerd Font Mono 15";
+}
+
+window {
+    width:              20%;
+    height:             30%;
+    location:           "centre";
+    anchor:             "centre";
+    border:             5px 5px 5px 5px;
+}
+
+element {
+    children:           [element-box];
+    padding:            0px;
+    orientation:        horizontal;
+}
+
+element-box {
+    children:           [element-text];
+    expand:             true;
+}
+
+element-text {
+    horizontal-align: 0.5;
+}
