@@ -30,6 +30,8 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
 
 # Aliases
 alias ls='ls --color=auto'
+alias vi='nvim'
+alias vim='nvim'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -56,3 +58,5 @@ if [[ -z $TMUX ]]; then
     echo "Neofetch is not installed. Please install it to see system information."
   fi
 fi
+
+. "$HOME/.cargo/env"
