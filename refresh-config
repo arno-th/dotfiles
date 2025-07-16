@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # Define array of folders to copy
 folders=(
-    "i3"
-    "polybar"
-    "nitrogen"
-    "rofi"
-    "gtk-3.0"
     "ghostty"
-    "scripts"
+    "gtk-3.0"
+    "i3"
+    "nitrogen"
     "ohmyposh"
+    "polybar"
+    "rofi"
+    "scripts"
 )
 
 # Define the source directory
@@ -22,6 +22,8 @@ for folder in "${folders[@]}"; do
     cp -r "$source_dir/$folder" "$destination_dir/"
 done
 
-
 # Refresh zsh config
 cp "$HOME/.zshrc" "$(pwd)/env/.zshrc"
+
+# Refresh tmux config
+cp "$HOME/.tmux.conf" "$(pwd)/env/.tmux.conf"
