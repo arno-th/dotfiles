@@ -57,10 +57,7 @@ bindsym $mod+r exec --no-startup-id ~/.config/rofi/scripts/rofi-wrapper.sh scrip
 bindsym $mod+Shift+p exec --no-startup-id ~/.config/rofi/scripts/rofi-wrapper.sh power
 
 # Swap on which monitor a workspace is shown
-bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/workspace_go_next_monitor.sh
-
-# Cycle which monitor is primary
-bindsym $mod+Shift+o exec --no-startup-id ~/.config/i3/cycle_primary_monitor.sh
+bindsym $mod+Shift+n exec --no-startup-id ~/.config/scripts/workspace_go_next_monitor.sh
 
 # Bind screenshot shortcuts
 # Screen

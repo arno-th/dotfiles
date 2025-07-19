@@ -1,4 +1,5 @@
 #!/bin/bash
+# TITLE: Extend monitors
 
 # Get connected monitors
 xrandr | grep " connected"
