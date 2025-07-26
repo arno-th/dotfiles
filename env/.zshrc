@@ -59,4 +59,8 @@ if [[ -z $TMUX ]]; then
   fi
 fi
 
+# Add Rust path
 . "$HOME/.cargo/env"
+
+# Set shell to emacs (for reverse search)
+bindkey -e
