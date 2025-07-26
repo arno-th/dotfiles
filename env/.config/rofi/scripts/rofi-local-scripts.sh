@@ -38,7 +38,7 @@ for entry in "${sorted[@]}"; do
 done
 
 # --- Show menu ---
-choice=$(printf '%s\n' "${titles[@]}" | rofi -dmenu -p "Run script:" -theme scripts)
+choice=$(printf '%s\n' "${titles[@]}" | rofi -dmenu -i -p "Run script:" -theme scripts)
 [[ -z "$choice" ]] && exit 0
 
 # --- Execute selected script ---
