@@ -9,6 +9,7 @@ folders=(
     "polybar"
     "rofi"
     "scripts"
+    "nvim"
 )
 
 # Define the source directory
