@@ -1,3 +1,4 @@
+require("arnoth.remap")
 require("arnoth.init_lazy")
 require("arnoth.options")
 

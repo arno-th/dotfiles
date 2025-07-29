@@ -10,6 +10,7 @@ return {
         "jsdoc",
         "bash",
         "python",
+        "yaml",
       },
 
       -- Remove lsp warnings
