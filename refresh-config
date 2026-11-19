@@ -23,6 +23,11 @@ for folder in "${folders[@]}"; do
     cp -r "$source_dir/$folder" "$destination_dir/"
 done
 
+# Refresh Omarchy global workspaces (see runs/omarchy-workspaces)
+mkdir -p "$destination_dir/hypr" "$destination_dir/omarchy/plugins"
+cp "$source_dir/hypr/global-workspaces.lua" "$destination_dir/hypr/"
+cp -r "$source_dir/omarchy/plugins/arnot.workspaces" "$destination_dir/omarchy/plugins/"
+
 # Refresh zsh config
 cp "$HOME/.zshrc" "$(pwd)/env/.zshrc"
 
