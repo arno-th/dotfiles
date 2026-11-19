@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+# Global workspaces on Omarchy: one shared set of workspaces 1-10 across all
+# monitors, instead of the per-monitor workspaces Omarchy 4.5 introduced.
+# Super+N goes to workspace N on whichever monitor has it, and only creates it
+# on the focused monitor when it doesn't exist yet.
+#
+# Installs:
+#   ~/.config/hypr/global-workspaces.lua        stands in for Omarchy's
+#                                               default.hypr.monitor-workspaces
+#   a preload hook in ~/.config/hypr/hyprland.lua that loads it
+#   ~/.config/omarchy/plugins/arnot.workspaces  bar widget showing global
+#                                               numbers: one marker on the
+#                                               focused workspace, an underline
+#                                               on one visible on another monitor
+#
+# Safe to run again: files are overwritten and the hook is only added once.
+
+set -euo pipefail
+
+if ! command -v omarchy &> /dev/null; then
+    echo "Omarchy not found, skipping global workspaces."
+    exit 0
+fi
+
+repo_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." &> /dev/null && pwd )"
+env_config="$repo_dir/env/.config"
+plugin="arnot.workspaces"
+
+# Workspace logic
+mkdir -p "$HOME/.config/hypr"
+cp "$env_config/hypr/global-workspaces.lua" "$HOME/.config/hypr/global-workspaces.lua"
+echo "Copied global-workspaces.lua to $HOME/.config/hypr/"
+
+# Hook it in right after Omarchy's bootstrap line, before its defaults load.
+hypr_conf="$HOME/.config/hypr/hyprland.lua"
+if [[ ! -f $hypr_conf ]]; then
+    echo "WARNING: $hypr_conf not found; add the preload hook by hand."
+elif grep -q 'hypr.global-workspaces' "$hypr_conf"; then
+    echo "Preload hook already in $hypr_conf"
+elif grep -q 'default/hypr/bootstrap.lua' "$hypr_conf"; then
+    cp "$hypr_conf" "$hypr_conf.bak.$(date +%s)"
+    tmp=$(mktemp)
+    awk '
+        { print }
+        /default\/hypr\/bootstrap\.lua/ && !done {
+            print ""
+            print "-- Keep workspaces global (one shared 1-10 across monitors) instead of Omarchy"
+            print "-- 4.5'"'"'s per-monitor workspaces: load hypr/global-workspaces.lua wherever"
+            print "-- Omarchy asks for its per-monitor module."
+            print "package.preload[\"default.hypr.monitor-workspaces\"] = function()"
+            print "  return require(\"hypr.global-workspaces\")"
+            print "end"
+            done = 1
+        }
+    ' "$hypr_conf" > "$tmp"
+    mv "$tmp" "$hypr_conf"
+    echo "Added preload hook to $hypr_conf (backup saved next to it)"
+else
+    echo "WARNING: Omarchy bootstrap line not found in $hypr_conf; add the preload hook by hand."
+fi
+
+# Bar widget
+mkdir -p "$HOME/.config/omarchy/plugins/$plugin"
+cp -r "$env_config/omarchy/plugins/$plugin/." "$HOME/.config/omarchy/plugins/$plugin/"
+echo "Copied $plugin bar widget to $HOME/.config/omarchy/plugins/"
+
+# Apply now if a session is running; otherwise say what to run after login.
+if hyprctl version &> /dev/null; then
+    hyprctl reload > /dev/null
+    echo "Reloaded Hyprland"
+fi
+
+enabled=0
+if omarchy-shell shell rescanPlugins &> /dev/null; then
+    for _ in $(seq 40); do
+        if omarchy-plugin-enable "$plugin" &> /dev/null; then
+            enabled=1
+            break
+        fi
+        sleep 0.05
+    done
+fi
+
+if (( enabled )); then
+    echo "Bar now uses $plugin"
+else
+    echo "Omarchy shell not running. After logging in, run: omarchy plugin enable $plugin"
+fi
